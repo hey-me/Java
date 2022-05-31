@@ -1,0 +1,107 @@
+package _GUI.Project은행;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+import javax.swing.*;
+
+public class _3_로그인다이얼로그 extends JDialog {
+
+	String name;
+	String id;
+	String password;
+	String tel;
+	String str= "";
+	JLabel la = new JLabel("id와 password를 확인하세요.");
+	JLabel bel = new JLabel("등록된 정보 없음");
+	JButton okBn = new JButton("확인");
+	Container c = getContentPane();
+	
+	public _3_로그인다이얼로그() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public _3_로그인다이얼로그(JFrame frame, String title) {
+		super(frame, title);
+		setTitle("로그인");
+		c.setLayout(null);
+		okBn.setBounds(50, 100, 80, 30);
+		c.add(okBn);
+
+		okBn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+			}
+		});
+		setSize(200, 200);
+		setVisible(true);
+	}
+
+	String login(String id, String password) {
+		this.id = id;
+		this.password = password;
+		String retStr = "";
+		if (id == null || password == null) {
+			la.setBounds(50, 10, 100,30);
+			la.setHorizontalAlignment(JLabel.CENTER);
+			c.add(la);
+			return "No";
+			
+		} else {
+			File file = new File("C:/JavaSF/workspace/JavaSF/은행/" + id + "," + password + "/고객정보.txt");
+			if (!file.exists()) {
+				str = "없음";
+				bel.setBounds(40, 30, 100,30);
+				bel.setHorizontalAlignment(JLabel.CENTER);
+				c.add(bel);
+				return "No";
+				
+			} else {
+				try {
+					InputStream is = new FileInputStream(
+							"C:/JavaSF/workspace/JavaSF/은행/" + id + "," + password + "/고객정보.txt");
+					Reader reader = new InputStreamReader(is);
+					BufferedReader br = new BufferedReader(reader);
+					String line = null;
+					line = br.readLine();
+					name = line;
+					str = line;
+					
+					is = new FileInputStream(
+							"C:/JavaSF/workspace/JavaSF/은행/" + id + "," + password + "/고객정보.txt");
+					reader = new InputStreamReader(is);
+					br = new BufferedReader(reader);
+					while ((line = br.readLine()) != null) {
+						System.out.println(line);
+						retStr += line + "\r\n\n";
+					}
+					
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+//				str = str.substring(3);
+				setTitle(str);
+			}
+			return retStr;
+		}
+	}
+
+	public String getStr() {
+		return str;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	
+}
