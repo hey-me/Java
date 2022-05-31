@@ -8,7 +8,7 @@ import java.io.*;
 import javax.swing.*;
 
 public class d_1_main extends JFrame {
-
+//
 	private JLabel first = new JLabel("My Diary");
 	private JLabel idLa = new JLabel("ID");
 	private JTextField idTf = new JTextField(15);
