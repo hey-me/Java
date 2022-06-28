@@ -1,9 +1,13 @@
 package programmers;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class Solution {
-
+public class ex_1_실패율 {
 	public int[] solution(int N, int[] stages) {
 		int[] answer = new int[N];
 		float[] imsiAnswer = new float[N];
@@ -105,7 +109,8 @@ public class Solution {
 	}
 
 	public static void main(String[] args) {
-		Solution s = new Solution();
+	 
+		ex_1_실패율 s = new ex_1_실패율();
 
 		int n = 5;
 		int[] stages = { 2, 1, 2, 6, 2, 4, 3, 3 };
